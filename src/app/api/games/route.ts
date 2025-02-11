@@ -1,8 +1,14 @@
 import {Game, OperatingSystem} from "@/app/types";
 
 //todo: create get request
-//first - return all
+//first - return all V
 //second - implement searchParams
+
+export async function GET() {
+
+    const res = allGames
+    return Response.json(res)
+}
 
 const allGames: Game[] =
     [
