@@ -1,4 +1,4 @@
-import {Game, OperatingSystem} from "@/app/types";
+import {Game, GamesResponse, OperatingSystem} from "@/app/types";
 import {NextRequest} from "next/server";
 
 export async function GET(request: NextRequest) {
@@ -16,21 +16,33 @@ export async function GET(request: NextRequest) {
 
     if (!page || page == "0") {
         const res = allGames.slice(0, itemsInPage)
-        return Response.json(res)
+        const data : GamesResponse ={
+            games : res,
+            hasMore : true //we know there are more then 10 items in the demo data
+        }
+        return Response.json(data)
     }
 
     const pageNumber = Number(page)
 
-    //end case for NaN like - 'ngk' / '5f+6'
+    //edge case when page is NaN like - 'ngk' / '5f+6'
     if (Object.is(NaN, pageNumber)) {
         console.warn("page is NaN", Object.is(NaN, pageNumber))
-        return Response.json([])
+        const data : GamesResponse ={
+            games : [],
+            hasMore : true
+        }
+        return Response.json(data)
     }
 
 
     const resultIndex = pageNumber * itemsInPage;
     const res = allGames.slice(resultIndex, resultIndex + itemsInPage)
-    return Response.json(res)
+    const data : GamesResponse ={
+        games : res,
+        hasMore : allGames.length > resultIndex + itemsInPage
+    }
+    return Response.json(data)
 }
 
 const allGames: Game[] =

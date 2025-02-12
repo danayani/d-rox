@@ -14,3 +14,8 @@ export enum OperatingSystem {
     payout: number
     bonusPayout?: number
 }
+
+export interface GamesResponse{
+    games:Game[]
+    hasMore:boolean
+}

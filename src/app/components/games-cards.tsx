@@ -1,5 +1,5 @@
 "use client"
-import {Game, OperatingSystem} from "@/app/types";
+import {Game, GamesResponse, OperatingSystem} from "@/app/types";
 import {useEffect, useState} from "react";
 import {UIEvent} from 'react';
 
@@ -7,13 +7,14 @@ export default function GamesCards() {
     const [page, setPage] = useState<number>(0)
     const [gamesShows, setGamesShows] = useState<Game[]>([])
     const [loadMoreVisibility, setLoadMoreVisibility] = useState<boolean>(true)
-
+    const [hasMoreGamesToLoad, setHasMoreGamesToLoad] = useState<boolean>(true)
+    //can be used with loader component
+    const [loadingData, setLoadingData] = useState<boolean>(false)
 
     useEffect(() => {
         updateGamesData()
     }, [])
 
-    if (gamesShows.length == 0) return <div>Loading...</div>
     return <div className={`w-full pt-6 h-screen overflow-y-scroll`}
                 onScroll={(event) => {
                     if (loadMoreVisibility) {
@@ -43,13 +44,20 @@ export default function GamesCards() {
     </div>
 
     function updateGamesData() {
+        if (!hasMoreGamesToLoad || loadingData) {
+            return
+        }
+        setLoadingData(true)
+
         const path = "http://localhost:3000/api/games"
-        //todo: check is there is more games, no sent redundant request
         fetch(`${path}?page=${page}`)
             .then((res) => res.json())
-            .then((data) => {
-                setGamesShows([...gamesShows, ...data])
+            .then((data: GamesResponse) => {
+                const newGames = data.games
+                setGamesShows([...gamesShows, ...newGames])
                 setPage(page + 1)
+                setHasMoreGamesToLoad(data.hasMore)
+                setLoadingData(false)
             })
             .catch(() => {
                 console.warn("Error in fetch data from ", path)
