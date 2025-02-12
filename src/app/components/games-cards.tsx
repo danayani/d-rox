@@ -12,7 +12,7 @@ export default function GamesCards() {
     }, [])
 
     if (gamesShows.length == 0) return <div>No Games for now...</div>
-    return <div className={`w-full justify-center pt-6 h-screen overflow-y-scroll mb-20`}
+    return <div className={`w-full justify-center pt-6 h-screen overflow-y-scroll`}
                 onScroll={handleScroll}>
         <div className={`justify-center flex flex-wrap gap-4`}>
             {gamesShows.map((game) => (
@@ -34,14 +34,12 @@ export default function GamesCards() {
     }
 
     function handleScroll(event: UIEvent<HTMLDivElement>) {
-        console.log("scrolling...")
         const ratioThreshold = 0.9
         const {scrollTop, scrollHeight, clientHeight} = event.target as HTMLDivElement
 
         const ratio = scrollTop / (scrollHeight - clientHeight)
 
         if (ratio > ratioThreshold) {
-
             updateGamesData()
             console.log("its time for more")
         }
@@ -52,11 +50,11 @@ export default function GamesCards() {
 function Card(props: { game: Game }) {
     return <div className={"p-4 flex flex-col gap-3 rounded-[18px] bg-DarkBlue "}>
         <div className={"flex flex-row gap-3.5"}>
-            <div className={'size-[60px] sm:size-[66px]  bg-Purple rounded-2xl'}>
-                {/*todo: image.........*/}
+            <div className={'size-[60px] sm:size-[66px] rounded-2xl'}>
+                <img src={`/images/${props.game.img_url}`} alt="home" height={70} width={70}/>
             </div>
             <div className={"flex flex-col w-[253px] sm:w-[390px] "}>
-                <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
+            <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
                     {props.game.title}
                 </div>
                 <div className={'h-[40px] text-xs sm:text-[13px] font-medium line-clamp-2 text-white/60'}>
@@ -97,13 +95,12 @@ function OsIcon(props: { os: OperatingSystem }) {
     )
 }
 
-//todo: font-family
 function Badges(props: { badgesNames: string[] }) {
     return (
         <div className={"flex flex-row gap-1"}>
             {props.badgesNames.map((name, index) => {
                 return <div key={index}
-                            className={"py-1.5 px-2.5 text-xs font-medium bg-white text-DarkBlue rounded-full "}>
+                            className={"py-1.5 px-2.5 text-xs font-medium bg-white text-DarkBlue rounded-full font-RobotoSlab"}>
                     {name}
                 </div>
             })
@@ -113,7 +110,6 @@ function Badges(props: { badgesNames: string[] }) {
 }
 
 //todo: improve the text-line-through
-//todo: font-family
 function Payout(props: { payout: number, bonusPayout?: number }) {
     const totalPayout = (props.bonusPayout) ? props.bonusPayout + props.payout : props.payout
     return (

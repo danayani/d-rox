@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        RobotoSlab:["Roboto Slab"]
+
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",

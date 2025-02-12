@@ -1,11 +1,6 @@
 import {Game, OperatingSystem} from "@/app/types";
 import {NextRequest} from "next/server";
 
-
-//todo: create get request
-//first - return all V
-//second - implement searchParams V
-
 export async function GET(request: NextRequest) {
     const itemsInPage = 10
     const searchParams = request.nextUrl.searchParams
@@ -36,9 +31,9 @@ const allGames: Game[] =
     [
         {
             "id": 1,
-            "title": "App Survey Rewards",
-            "img_url": "https://example.com/img1.jpg",
-            "description": "Complete surveys and earn rewards.",
+            "title": "App Survey Rewards - App Survey Rewards - App Survey Rewards",
+            "img_url": "img1.svg",
+            "description": "Complete surveys and earn rewards. rewards.",
             "os": OperatingSystem.ios,
             "badges": ["popular", "high payout"],
             "payout": 250,
@@ -47,7 +42,7 @@ const allGames: Game[] =
         {
             "id": 2,
             "title": "Gaming Cash Challenge",
-            "img_url": "https://example.com/img2.jpg",
+            "img_url": "img2.svg",
             "description": "Play games and win cash prizes.",
             "os": OperatingSystem.android,
             "badges": ["fun", "high payout"],
@@ -56,7 +51,7 @@ const allGames: Game[] =
         {
             "id": 3,
             "title": "Fitness Steps Rewards",
-            "img_url": "https://example.com/img3.jpg",
+            "img_url": "img3.svg",
             "description": "Walk daily and earn points for cash.",
             "os": OperatingSystem.ios,
             "badges": ["health", "daily"],
@@ -65,7 +60,7 @@ const allGames: Game[] =
         {
             "id": 4,
             "title": "Watch Ads & Earn",
-            "img_url": "https://example.com/img4.jpg",
+            "img_url": "img4.svg",
             "description": "Watch video ads to earn real money.",
             "os": OperatingSystem.android,
             "badges": ["easy", "quick payout"],
@@ -75,7 +70,7 @@ const allGames: Game[] =
         {
             "id": 5,
             "title": "Task Completion Bonus",
-            "img_url": "https://example.com/img5.jpg",
+            "img_url": "img5.svg",
             "description": "Complete small tasks and get paid.",
             "os": OperatingSystem.web,
             "badges": ["remote", "flexible"],
@@ -84,7 +79,7 @@ const allGames: Game[] =
         {
             "id": 6,
             "title": "Product Testing Rewards",
-            "img_url": "https://example.com/img6.jpg",
+            "img_url": "img1.svg",
             "description": "Test new products and get paid for feedback.",
             "os": OperatingSystem.ios,
             "badges": ["exclusive", "beta testing"],
@@ -94,7 +89,7 @@ const allGames: Game[] =
         {
             "id": 7,
             "title": "Referral Cash Bonus",
-            "img_url": "https://example.com/img7.jpg",
+            "img_url": "img2.svg",
             "description": "Refer friends and earn commission.",
             "os": OperatingSystem.android,
             "badges": ["passive income", "social"],
@@ -103,7 +98,7 @@ const allGames: Game[] =
         {
             "id": 8,
             "title": "Daily Login Rewards",
-            "img_url": "https://example.com/img8.jpg",
+            "img_url": "img3.svg",
             "description": "Earn rewards just by logging in daily.",
             "os": OperatingSystem.web,
             "badges": ["consistency", "easy"],
@@ -112,7 +107,7 @@ const allGames: Game[] =
         {
             "id": 9,
             "title": "Trivia Challenge",
-            "img_url": "https://example.com/img9.jpg",
+            "img_url": "img4.svg",
             "description": "Answer trivia questions and earn rewards.",
             "os": OperatingSystem.ios,
             "badges": ["fun", "competitive"],
@@ -121,7 +116,7 @@ const allGames: Game[] =
         {
             "id": 10,
             "title": "Photo Upload Contest",
-            "img_url": "https://example.com/img10.jpg",
+            "img_url": "img5.svg",
             "description": "Upload creative photos and earn prizes.",
             "os": OperatingSystem.android,
             "badges": ["creative", "easy"],
@@ -130,7 +125,7 @@ const allGames: Game[] =
         {
             "id": 11,
             "title": "Mystery Shopper",
-            "img_url": "https://example.com/img11.jpg",
+            "img_url": "img1.svg",
             "description": "Visit stores and provide feedback for cash.",
             "os": OperatingSystem.web,
             "badges": ["adventure", "high payout"],
@@ -140,7 +135,7 @@ const allGames: Game[] =
         {
             "id": 12,
             "title": "Music Listening Rewards",
-            "img_url": "https://example.com/img12.jpg",
+            "img_url": "img2.svg",
             "description": "Listen to music and get paid.",
             "os": OperatingSystem.ios,
             "badges": ["entertainment", "passive income"],
@@ -150,7 +145,7 @@ const allGames: Game[] =
         {
             "id": 13,
             "title": "Survey King",
-            "img_url": "https://example.com/img13.jpg",
+            "img_url": "img3.svg",
             "description": "Complete surveys and earn money.",
             "os": OperatingSystem.android,
             "badges": ["easy tasks", "high payout"],
@@ -160,7 +155,7 @@ const allGames: Game[] =
         {
             "id": 14,
             "title": "Game Tester",
-            "img_url": "https://example.com/img14.jpg",
+            "img_url": "img5.svg",
             "description": "Play and review new games for cash.",
             "os": OperatingSystem.web,
             "badges": ["gaming", "fun"],
@@ -170,7 +165,7 @@ const allGames: Game[] =
         {
             "id": 15,
             "title": "Ad Watcher",
-            "img_url": "https://example.com/img15.jpg",
+            "img_url": "img1.svg",
             "description": "Watch ads and get paid instantly.",
             "os": OperatingSystem.ios,
             "badges": ["passive income", "quick cash"],
@@ -179,7 +174,7 @@ const allGames: Game[] =
         {
             "id": 16,
             "title": "Photo Seller",
-            "img_url": "https://example.com/img16.jpg",
+            "img_url": "img2.svg",
             "description": "Sell your photos online for royalties.",
             "os": OperatingSystem.web,
             "badges": ["creative", "passive income"],
@@ -189,7 +184,7 @@ const allGames: Game[] =
         {
             "id": 17,
             "title": "Freelance Writer",
-            "img_url": "https://example.com/img17.jpg",
+            "img_url": "img3.svg",
             "description": "Write articles and get paid per word.",
             "os": OperatingSystem.web,
             "badges": ["writing", "high payout"],
@@ -199,7 +194,7 @@ const allGames: Game[] =
         {
             "id": 18,
             "title": "Fitness Tracker Rewards",
-            "img_url": "https://example.com/img18.jpg",
+            "img_url": "img4.svg",
             "description": "Earn rewards for staying active.",
             "os": OperatingSystem.ios,
             "badges": ["health", "passive income"],
@@ -208,7 +203,7 @@ const allGames: Game[] =
         {
             "id": 19,
             "title": "Online Tutor",
-            "img_url": "https://example.com/img19.jpg",
+            "img_url": "img5.svg",
             "description": "Teach students online for hourly pay.",
             "os": OperatingSystem.web,
             "badges": ["education", "high payout"],
@@ -218,7 +213,7 @@ const allGames: Game[] =
         {
             "id": 20,
             "title": "Stock Photo Reviewer",
-            "img_url": "https://example.com/img20.jpg",
+            "img_url": "img1.svg",
             "description": "Review and approve stock photos.",
             "os": OperatingSystem.web,
             "badges": ["creative", "flexible"],
@@ -227,7 +222,7 @@ const allGames: Game[] =
         {
             "id": 21,
             "title": "Cashback Shopper",
-            "img_url": "https://example.com/img21.jpg",
+            "img_url": "img2.svg",
             "description": "Get paid for shopping through cashback apps.",
             "os": OperatingSystem.ios,
             "badges": ["shopping", "cashback"],
@@ -236,7 +231,7 @@ const allGames: Game[] =
         {
             "id": 22,
             "title": "Language Translator",
-            "img_url": "https://example.com/img22.jpg",
+            "img_url": "img3.svg",
             "description": "Translate documents and get paid.",
             "os": OperatingSystem.web,
             "badges": ["language", "high payout"],
@@ -246,7 +241,7 @@ const allGames: Game[] =
         {
             "id": 23,
             "title": "Data Entry Worker",
-            "img_url": "https://example.com/img23.jpg",
+            "img_url": "img4.svg",
             "description": "Enter data and earn per task completed.",
             "os": OperatingSystem.web,
             "badges": ["easy tasks", "flexible"],
@@ -255,7 +250,7 @@ const allGames: Game[] =
         {
             "id": 24,
             "title": "Pet Walker",
-            "img_url": "https://example.com/img24.jpg",
+            "img_url": "img5.svg",
             "description": "Walk pets and earn money per hour.",
             "os": OperatingSystem.ios,
             "badges": ["outdoors", "fun"],
@@ -264,7 +259,7 @@ const allGames: Game[] =
         {
             "id": 25,
             "title": "Virtual Assistant",
-            "img_url": "https://example.com/img25.jpg",
+            "img_url": "img1.svg",
             "description": "Help businesses with virtual tasks.",
             "os": OperatingSystem.web,
             "badges": ["remote work", "high payout"],
@@ -274,7 +269,7 @@ const allGames: Game[] =
         {
             "id": 26,
             "title": "Voiceover Artist",
-            "img_url": "https://example.com/img26.jpg",
+            "img_url": "img2.svg",
             "description": "Record voiceovers for various projects.",
             "os": OperatingSystem.web,
             "badges": ["creative", "high payout"],
@@ -284,7 +279,7 @@ const allGames: Game[] =
         {
             "id": 27,
             "title": "Local Guide",
-            "img_url": "https://example.com/img27.jpg",
+            "img_url": "img3.svg",
             "description": "Show tourists around your city for cash.",
             "os": OperatingSystem.ios,
             "badges": ["adventure", "social"],
