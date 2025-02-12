@@ -8,15 +8,14 @@ export default function GamesCards() {
     const [page, setPage] = useState<number>(0)
     const [gamesShows, setGamesShows] = useState<Game[]>([])
     const [isLoading, setLoading] = useState(true)
-    console.log(gamesShows)
 
     useEffect(() => {
         updateGamesData()
     }, [])
 
     if (isLoading) return <p>Loading...</p>
-    return <div className={`w-full justify-center flex flex-row flex-wrap gap-4 pt-6`}
-     >
+    return <div className={`w-full justify-center flex flex-row flex-wrap gap-4 pt-6 h-screen overflow-y-scroll`}
+     onScroll={()=> console.log("onScroll....")}>
         {gamesShows.map((game) => (
             <div key={game.id}>
                 <Card game={game}/>
