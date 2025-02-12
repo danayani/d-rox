@@ -1,7 +1,7 @@
 export default function NavigationBar() {
     return (
         <div>
-            <div className={' sm:hidden flex flex-row justify-between items-center'}>
+            <div className={' sm:hidden flex flex-row justify-between items-center pb-2'}>
                 <img src={"/icons/logo.svg"} alt="logo" height={29.09} width={29.55}/>
 
                 <div className={'flex flex-row items-center gap-[9px]'}>
@@ -13,7 +13,7 @@ export default function NavigationBar() {
                 </div>
             </div>
 
-            <div className={'hidden sm:flex flex-col '}>
+            <div className={'hidden sm:flex flex-col gap-6'}>
                 <div className={' flex flex-row items-center gap-2'}>
                     <img src={"/icons/logo.svg"} alt="logo" height={34.14} width={34.58}/>
                     <img src={"/icons/logo-name.svg"} alt="logo" height={17} width={100}/>

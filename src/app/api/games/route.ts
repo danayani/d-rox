@@ -1,6 +1,7 @@
 import {Game, OperatingSystem} from "@/app/types";
 import {NextRequest} from "next/server";
 
+
 //todo: create get request
 //first - return all V
 //second - implement searchParams V

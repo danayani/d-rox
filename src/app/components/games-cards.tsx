@@ -52,14 +52,14 @@ export default function GamesCards() {
 function Card(props: { game: Game }) {
     return <div className={"p-4 flex flex-col gap-3 rounded-[18px] bg-DarkBlue "}>
         <div className={"flex flex-row gap-3.5"}>
-            <div className={'size-[66px] bg-Purple rounded-2xl'}>
+            <div className={'size-[60px] sm:size-[66px]  bg-Purple rounded-2xl'}>
                 {/*todo: image.........*/}
             </div>
-            <div className={"flex flex-col w-[390px]"}>
-                <div className={'text-lg truncate font-semibold text-white '}>
+            <div className={"flex flex-col w-[253px] sm:w-[390px] "}>
+                <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
                     {props.game.title}
                 </div>
-                <div className={'h-[40px] text-[13px] font-medium line-clamp-2 text-white/60'}>
+                <div className={'h-[40px] text-xs sm:text-[13px] font-medium line-clamp-2 text-white/60'}>
                     {props.game.description}
                 </div>
             </div>
@@ -103,7 +103,7 @@ function Badges(props: { badgesNames: string[] }) {
         <div className={"flex flex-row gap-1"}>
             {props.badgesNames.map((name, index) => {
                 return <div key={index}
-                            className={"py-1.5 px-2.5 text-xs font-medium bg-white text-DarkBlue rounded-full"}>
+                            className={"py-1.5 px-2.5 text-xs font-medium bg-white text-DarkBlue rounded-full "}>
                     {name}
                 </div>
             })
