@@ -5,18 +5,13 @@ import {useEffect, useState} from "react";
 
 
 export default function GamesCards() {
+    const [page, setPage] = useState<number>(0)
     const [gamesShows, setGamesShows] = useState<Game[]>([])
     const [isLoading, setLoading] = useState(true)
     console.log(gamesShows)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/games?page=1`)
-            .then((res) => res.json())
-            .then((data) => {
-                console.log("data = ", data)
-                setGamesShows([...gamesShows, ...data])
-                setLoading(false)
-            })
+        updateGamesData()
     }, [])
 
     if (isLoading) return <p>Loading...</p>
@@ -27,7 +22,21 @@ export default function GamesCards() {
                 <Card game={game}/>
             </div>
         ))}
+        {/*todo: change button to event onScroll*/}
+        <button onClick={updateGamesData}>load more</button>
     </div>
+
+    function updateGamesData() {
+        // setLoading(true)
+        fetch(`http://localhost:3000/api/games?page=${page}`)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log("more games = ", data)
+                setGamesShows([...gamesShows, ...data])
+                setPage(page + 1)
+                setLoading(false)
+            })
+    }
 }
 
 
