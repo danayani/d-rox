@@ -139,14 +139,16 @@ function Badges(props: { badgesNames: string[] }) {
     )
 }
 
-//todo: improve the text-line-through
 function Payout(props: { payout: number, bonusPayout?: number }) {
     const totalPayout = (props.bonusPayout) ? props.bonusPayout + props.payout : props.payout
     return (
         <div className={"flex flex-row rounded-full text-DarkBlue bg-LightGreen items-center p-1.5 gap-1"}>
             {props.bonusPayout &&
-                <div className={"text-xs line-through line font-medium"}>
-                    {props.payout}
+                <div className={"relative text-xs font-medium"}>
+                    <div className={"absolute top-1.5 h-[1px] w-full rotate-[170deg] bg-DarkBlue"}></div>
+                    <div className={'relative'}>
+                        {props.payout}
+                    </div>
                 </div>
             }
             <img src={`/icons/payout.svg`} alt="home" height={18} width={18}/>
