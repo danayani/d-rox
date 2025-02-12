@@ -14,9 +14,6 @@ export default {
 
       },
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-
         LightGray: "#A0AEC0",
         Purple: "#8860FF",
         PurpleBlue:"#6A38FF",
