@@ -49,7 +49,7 @@ export default function GamesCards() {
         }
         setLoadingData(true)
 
-        const path = "http://localhost:3000/api/games"
+        const path = "/api/games"
         fetch(`${path}?page=${page}`)
             .then((res) => res.json())
             .then((data: GamesResponse) => {
