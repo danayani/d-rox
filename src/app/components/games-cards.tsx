@@ -1,8 +1,7 @@
 "use client"
 import {Game} from "@/app/types";
 import {useEffect, useState} from "react";
-
-
+import { UIEvent } from 'react';
 
 export default function GamesCards() {
     const [page, setPage] = useState<number>(0)
@@ -15,7 +14,7 @@ export default function GamesCards() {
 
     if (isLoading) return <p>Loading...</p>
     return <div className={`w-full justify-center flex flex-row flex-wrap gap-4 pt-6 h-screen overflow-y-scroll`}
-     onScroll={()=> console.log("onScroll....")}>
+     onScroll={handleScroll}>
         {gamesShows.map((game) => (
             <div key={game.id}>
                 <Card game={game}/>
@@ -35,6 +34,20 @@ export default function GamesCards() {
                 setPage(page + 1)
                 setLoading(false)
             })
+    }
+
+    function handleScroll(event: UIEvent<HTMLDivElement>) {
+        console.log("scrolling...")
+        const ratioThreshold = 0.9
+        const {scrollTop, scrollHeight, clientHeight} = event.target as HTMLDivElement
+
+        const ratio = scrollTop / (scrollHeight - clientHeight)
+
+        if (ratio > ratioThreshold) {
+
+            updateGamesData()
+            console.log("its time for more")
+        }
     }
 }
 
