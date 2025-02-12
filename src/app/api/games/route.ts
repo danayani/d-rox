@@ -1,23 +1,22 @@
 import {Game, GamesResponse, OperatingSystem} from "@/app/types";
 import {NextRequest} from "next/server";
 
+/*
+some examples:
+page 0 = 1 - 10
+page 1 = 11 - 20
+page 2 = 21-30
+and so on
+*/
 export async function GET(request: NextRequest) {
-    const itemsInPage = 10
+    const itemsPerPage = 10
     const searchParams = request.nextUrl.searchParams
     const page = searchParams.get('page')
 
-    /*
-    games range by page :
-    page 0 = 1 - 10
-    page 1 = 11 - 20
-    page 2 = 21-30
-    and so on
-    */
-
     if (!page || page == "0") {
-        const res = allGames.slice(0, itemsInPage)
+        const gamesPageResult = allGames.slice(0, itemsPerPage)
         const data : GamesResponse ={
-            games : res,
+            games : gamesPageResult,
             hasMore : true //we know there are more then 10 items in the demo data
         }
         return Response.json(data)
@@ -36,11 +35,11 @@ export async function GET(request: NextRequest) {
     }
 
 
-    const resultIndex = pageNumber * itemsInPage;
-    const res = allGames.slice(resultIndex, resultIndex + itemsInPage)
+    const resultIndex = pageNumber * itemsPerPage;
+    const gamesPageResult = allGames.slice(resultIndex, resultIndex + itemsPerPage)
     const data : GamesResponse ={
-        games : res,
-        hasMore : allGames.length > resultIndex + itemsInPage
+        games : gamesPageResult,
+        hasMore : allGames.length > resultIndex + itemsPerPage
     }
     return Response.json(data)
 }

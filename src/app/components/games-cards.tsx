@@ -5,7 +5,7 @@ import {UIEvent} from 'react';
 
 export default function GamesCards() {
     const [page, setPage] = useState<number>(0)
-    const [gamesShows, setGamesShows] = useState<Game[]>([])
+    const [gamesToShow, setGamesToShow] = useState<Game[]>([])
     const [loadMoreVisibility, setLoadMoreVisibility] = useState<boolean>(true)
     const [hasMoreGamesToLoad, setHasMoreGamesToLoad] = useState<boolean>(true)
     //can be used with loader component
@@ -22,8 +22,8 @@ export default function GamesCards() {
                     }
                     handleScroll(event)
                 }}>
-        <div className={`justify-center flex flex-wrap gap-4`}>
-            {gamesShows.map((game) => (
+        <div className={`justify-center flex flex-wrap gap-4 pb-32`}>
+            {gamesToShow.map((game) => (
                 <Card game={game} key={game.id}/>
             ))}
         </div>
@@ -35,12 +35,7 @@ export default function GamesCards() {
         After the first click / scroll it disappear.
         */}
         {loadMoreVisibility &&
-            <button onClick={() => {
-                setLoadMoreVisibility(false)
-                updateGamesData()
-            }}
-                    className={"flex justify-self-center m-4 p-2 rounded-full text-white bg-Purple"}>Load more
-            </button>}
+            <LoadMoreButton/>}
     </div>
 
     function updateGamesData() {
@@ -49,18 +44,17 @@ export default function GamesCards() {
         }
         setLoadingData(true)
 
-        const path = "/api/games"
-        fetch(`${path}?page=${page}`)
+        fetch(`/api/games?page=${page}`)
             .then((res) => res.json())
             .then((data: GamesResponse) => {
                 const newGames = data.games
-                setGamesShows([...gamesShows, ...newGames])
+                setGamesToShow([...gamesToShow, ...newGames])
                 setPage(page + 1)
                 setHasMoreGamesToLoad(data.hasMore)
                 setLoadingData(false)
             })
             .catch(() => {
-                console.warn("Error in fetch data from ", path)
+                console.error("Error in fetch data ")
             })
     }
 
@@ -73,6 +67,16 @@ export default function GamesCards() {
         if (ratio > ratioThreshold) {
             updateGamesData()
         }
+    }
+
+    function LoadMoreButton() {
+        return <button onClick={() => {
+            setLoadMoreVisibility(false)
+            updateGamesData()
+        }}
+                       className={"flex justify-self-center m-4 p-2 rounded-full text-white bg-Purple"}>
+            Load more
+        </button>
     }
 }
 
