@@ -1,12 +1,33 @@
 import {Game, OperatingSystem} from "@/app/types";
+import {NextRequest} from "next/server";
 
 //todo: create get request
 //first - return all V
-//second - implement searchParams
+//second - implement searchParams V
 
-export async function GET() {
+export async function GET(request: NextRequest) {
+    const itemsInPage = 10
+    const searchParams = request.nextUrl.searchParams
+    const page = searchParams.get('page')
 
-    const res = allGames
+    //0 = 1 - 10
+    //1 = 11 - 20
+    //2 = 21-30
+
+    if (!page || page == "0") {
+        const res = allGames.slice(0, itemsInPage)
+        return Response.json(res)
+    }
+
+    const pageNumber = Number(page)
+
+    if (Object.is(NaN, pageNumber)) {
+        console.warn("page is NaN", Object.is(NaN, pageNumber))
+        return Response.json([])
+    }
+
+    const resultIndex = pageNumber * itemsInPage;
+    const res = allGames.slice(resultIndex, resultIndex + itemsInPage)
     return Response.json(res)
 }
 

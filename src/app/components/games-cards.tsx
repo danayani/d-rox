@@ -10,7 +10,7 @@ export default function GamesCards() {
     console.log(gamesShows)
 
     useEffect(() => {
-        fetch(`http://localhost:3000/api/games`)
+        fetch(`http://localhost:3000/api/games?page=1`)
             .then((res) => res.json())
             .then((data) => {
                 console.log("data = ", data)
