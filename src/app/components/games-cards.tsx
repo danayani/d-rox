@@ -6,34 +6,52 @@ import {UIEvent} from 'react';
 export default function GamesCards() {
     const [page, setPage] = useState<number>(0)
     const [gamesShows, setGamesShows] = useState<Game[]>([])
+    const [loadMoreVisibility, setLoadMoreVisibility] = useState<boolean>(true)
+
 
     useEffect(() => {
         updateGamesData()
     }, [])
 
     if (gamesShows.length == 0) return <div>Loading...</div>
-    return <div className={`w-full justify-center pt-6 h-screen overflow-y-scroll`}
-                onScroll={handleScroll}>
+    return <div className={`w-full pt-6 h-screen overflow-y-scroll`}
+                onScroll={(event) => {
+                    if (loadMoreVisibility) {
+                        setLoadMoreVisibility(false)
+                    }
+                    handleScroll(event)
+                }}>
         <div className={`justify-center flex flex-wrap gap-4`}>
             {gamesShows.map((game) => (
                 <Card game={game} key={game.id}/>
             ))}
         </div>
 
-        {/*todo: change button to event onScroll*/}
-        <button onClick={updateGamesData}>load more</button>
+        {/*
+        TODO: hot-fix for a bigger screen edge case.
+        In this case, the 'onScroll' event does not fire (when the wrapper container of the games cards is too big and the scroll is hidden)
+        Below there is a 'load more' button, to initiate the first scrolling.
+        After the first click / scroll it disappear.
+        */}
+        {loadMoreVisibility &&
+            <button onClick={() => {
+                setLoadMoreVisibility(false)
+                updateGamesData()
+            }}
+                    className={"flex justify-self-center m-4 p-2 rounded-full text-white bg-Purple"}>Load more
+            </button>}
     </div>
 
     function updateGamesData() {
-        const path= "http://localhost:3000/api/games"
-       //todo: check is there is more games, no sent redundant request
+        const path = "http://localhost:3000/api/games"
+        //todo: check is there is more games, no sent redundant request
         fetch(`${path}?page=${page}`)
             .then((res) => res.json())
             .then((data) => {
                 setGamesShows([...gamesShows, ...data])
                 setPage(page + 1)
             })
-            .catch(()=>{
+            .catch(() => {
                 console.warn("Error in fetch data from ", path)
             })
     }
@@ -58,7 +76,7 @@ function Card(props: { game: Game }) {
                 <img src={`/images/${props.game.img_url}`} alt="home" height={70} width={70}/>
             </div>
             <div className={"flex flex-col w-[253px] sm:w-[390px] "}>
-            <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
+                <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
                     {props.game.title}
                 </div>
                 <div className={'h-[40px] text-xs sm:text-[13px] font-medium line-clamp-2 text-white/60'}>
@@ -92,7 +110,7 @@ function OsIcon(props: { os: OperatingSystem }) {
     }
 
     return (
-        <div className={"flex items-center"} >
+        <div className={"flex items-center"}>
             <img src={`/icons/${iconUrl}`} alt="home" height={24} width={24}/>
         </div>
 
