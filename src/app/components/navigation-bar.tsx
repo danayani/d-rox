@@ -1,6 +1,7 @@
 export default function NavigationBar() {
     return (
         <div>
+            {/* Mobile View */}
             <div className={' sm:hidden flex flex-row justify-between items-center pb-2'}>
                 <img src={"/icons/logo.svg"} alt="logo" height={29.09} width={29.55}/>
 
@@ -13,22 +14,27 @@ export default function NavigationBar() {
                 </div>
             </div>
 
+            {/* Web View */}
             <div className={'hidden sm:flex flex-col gap-6'}>
-                <div className={' flex flex-row items-center gap-2'}>
-                    <img src={"/icons/logo.svg"} alt="logo" height={34.14} width={34.58}/>
-                    <img src={"/icons/logo-name.svg"} alt="logo" height={17} width={100}/>
-                </div>
+                <WebLogo/>
                 <Tabs/>
             </div>
         </div>
     )
 }
 
+function WebLogo() {
+    return <div className={" flex flex-row items-center gap-2"}>
+        <img src={"/icons/logo.svg"} alt="logo" height={34.14} width={34.58}/>
+        <img src={"/icons/logo-name.svg"} alt="logo" height={17} width={100}/>
+    </div>
+}
+
 function Tabs() {
     return <div className={"flex flex-row justify-between"}>
-        < Tab label={"Home"} icon={"home"} active={true}/>
-        < Tab label={"My Activity"} icon={"activity"}/>
-        < Tab label={"Settings"} icon={"setting"}/>
+        <Tab label={"Home"} icon={"home"} active={true}/>
+        <Tab label={"My Activity"} icon={"activity"}/>
+        <Tab label={"Settings"} icon={"setting"}/>
     </div>
 }
 

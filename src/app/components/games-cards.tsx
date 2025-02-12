@@ -11,7 +11,7 @@ export default function GamesCards() {
         updateGamesData()
     }, [])
 
-    if (gamesShows.length == 0) return <div>No Games for now...</div>
+    if (gamesShows.length == 0) return <div>Loading...</div>
     return <div className={`w-full justify-center pt-6 h-screen overflow-y-scroll`}
                 onScroll={handleScroll}>
         <div className={`justify-center flex flex-wrap gap-4`}>
@@ -25,11 +25,16 @@ export default function GamesCards() {
     </div>
 
     function updateGamesData() {
-        fetch(`http://localhost:3000/api/games?page=${page}`)
+        const path= "http://localhost:3000/api/games"
+       //todo: check is there is more games, no sent redundant request
+        fetch(`${path}?page=${page}`)
             .then((res) => res.json())
             .then((data) => {
                 setGamesShows([...gamesShows, ...data])
                 setPage(page + 1)
+            })
+            .catch(()=>{
+                console.warn("Error in fetch data from ", path)
             })
     }
 
@@ -41,7 +46,6 @@ export default function GamesCards() {
 
         if (ratio > ratioThreshold) {
             updateGamesData()
-            console.log("its time for more")
         }
     }
 }

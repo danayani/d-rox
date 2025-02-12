@@ -6,9 +6,13 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const page = searchParams.get('page')
 
-    //0 = 1 - 10
-    //1 = 11 - 20
-    //2 = 21-30
+    /*
+    games range by page :
+    page 0 = 1 - 10
+    page 1 = 11 - 20
+    page 2 = 21-30
+    and so on
+    */
 
     if (!page || page == "0") {
         const res = allGames.slice(0, itemsInPage)
@@ -17,10 +21,12 @@ export async function GET(request: NextRequest) {
 
     const pageNumber = Number(page)
 
+    //end case for NaN like - 'ngk' / '5f+6'
     if (Object.is(NaN, pageNumber)) {
         console.warn("page is NaN", Object.is(NaN, pageNumber))
         return Response.json([])
     }
+
 
     const resultIndex = pageNumber * itemsInPage;
     const res = allGames.slice(resultIndex, resultIndex + itemsInPage)
