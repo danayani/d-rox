@@ -70,7 +70,7 @@ export default function GamesCards() {
     }
 
     function LoadMoreButton() {
-        return <button onClick={() => {
+        return <button data-testid={"load-games-button"} onClick={() => {
             setLoadMoreVisibility(false)
             updateGamesData()
         }}
@@ -88,10 +88,10 @@ function Card(props: { game: Game }) {
                 <img src={`/images/${props.game.img_url}`} alt="home" height={70} width={70}/>
             </div>
             <div className={"flex flex-col w-[253px] sm:w-[390px] "}>
-                <div className={'text-sm sm:text-lg truncate font-semibold text-white '}>
+                <div data-testid={"game-title"} className={'text-sm sm:text-lg truncate font-semibold text-white '}>
                     {props.game.title}
                 </div>
-                <div className={'h-[40px] text-xs sm:text-[13px] font-medium line-clamp-2 text-white/60'}>
+                <div data-testid={"game-description"} className={'h-[40px] text-xs sm:text-[13px] font-medium line-clamp-2 text-white/60'}>
                     {props.game.description}
                 </div>
             </div>

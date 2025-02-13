@@ -18,3 +18,13 @@ bun dev
 or
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Implements test with Playwrite
+
+`npx playwright test`
+Runs the end-to-end tests.
+
+`npx playwright test --ui`
+Starts the interactive UI mode.
+
+
